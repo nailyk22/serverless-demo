@@ -44,6 +44,17 @@ resource "aws_lambda_function" "api" {
   }
 }
 
+resource "aws_dynamodb_table" "contacts" {
+  name         = "contacts"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "id"
+
+  attribute {
+    name = "id"
+    type = "S"
+  }
+}
+
 data "aws_dynamodb_table" "contacts" {
   name         = "contacts"
 }
